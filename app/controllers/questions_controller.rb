@@ -4,10 +4,14 @@ class QuestionsController < ApplicationController
   end
 
   def answer
-    @answers = [ 'Great!', 'Silly question, get dressed and go to work!', "I don't care, get dressed and go to work!" ]
+    question = params[:question]
 
-    if params[:answer]
-      @answers = @answers.select { |answer| answer.start_with?(params[:answer]) }
+    if question.downcase == "i am going to work"
+      @answers  = "Great!"
+    elsif question.end_with?("?")
+      @answers = "Silly question, get dressed and go to work!"
+    else
+      @answers = "I don't care, get dressed and go to work!"
     end
   end
 
